@@ -1,0 +1,48 @@
+//523. 连续的子数组和
+
+class Solution {
+    public boolean checkSubarraySum(int[] nums, int k) {
+        int sum = 0;
+        boolean flag = false;
+        for (int i = 0; i < nums.length; i++) {
+            sum = sum + nums[i];
+        }
+        if (nums.length == 1) {
+            return false;
+        }
+        if (sum == 0 && k != 0) 
+        {
+            return true;
+        }
+        if (nums.length == 2) {
+            sum = nums[0] + nums[1];
+            if (k == 0) {
+                if(sum!=0) return false;
+                else return true;
+            }
+            if (sum % k == 0) {
+                return true;
+            } else return false;
+        }
+        for (int i = 0; i < nums.length-1; i++) {
+            sum = nums[i] + nums[i + 1];
+            if (k == 0) 
+            {
+                if(sum==0) return true;
+            }
+            else 
+                if (sum % k == 0) return true;
+            for (int j = i + 2; j < nums.length; j++) {
+                sum = sum + nums[j];
+                if (k == 0) 
+                {
+                    if(sum==0) return true;
+                }
+                else 
+                    if (sum % k == 0) return true;
+            }
+        }
+        return flag;
+    }
+
+}
