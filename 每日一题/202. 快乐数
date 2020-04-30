@@ -1,0 +1,34 @@
+class Solution {
+    public boolean isHappy(int n) {
+        int sum = n,k=0;
+        int a[] = null;
+        HashSet<Integer>  set = new HashSet<Integer>();
+
+        while(sum!=1)
+        {
+            a = every_n(sum);
+            int temp = 0;
+            for(int i = 0; i<a.length; i++)
+            {
+                temp = temp + a[i]*a[i];
+            }
+            sum = temp;
+            if(set.add(temp)==false) break;
+        }
+
+        if(sum==1) return true;
+        else return false;
+    }
+
+    public int[] every_n(int n)
+    {
+        String str = String.valueOf(n);
+        int len = str.length();
+        int a[] = new int[len];
+        for(int i=0;i<len;i++){
+            a[i] = n%10;
+            n /= 10;
+        }
+        return a;
+    }
+}
